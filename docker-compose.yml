@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ../taskflow-backend (1)/taskflow-backend-package/backend
+    container_name: taskflow-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ../taskflow-backend (1)/taskflow-backend-package/backend/.env
+    restart: unless-stopped
+
+  frontend:
+    build: ../taskflow-frontend (1)/taskflow-frontend
+    container_name: taskflow-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
