@@ -27,6 +27,8 @@ jobs:
 
       - name: Run backend tests
         working-directory: backend
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
         run: npm test
 
       - name: Build Docker images
